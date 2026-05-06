@@ -104,6 +104,15 @@ make release BUMP=minor
 - A clean working tree
 - Permission to create releases in `jonace-mpelule/devdesk`
 
+After publishing, verify the public installer against the release:
+
+```sh
+DEVDESK_VERSION=<tag> DEVDESK_INSTALL_DIR=/tmp/devdesk-install-test sh ./install.sh
+/tmp/devdesk-install-test/devdesk version
+```
+
+The installed binary version should match the release tag.
+
 ## Installer Contract
 
 The public install command downloads the latest GitHub release:
