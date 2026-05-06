@@ -4,16 +4,16 @@ DevDesk is a macOS CLI for switching workspaces without rebooting or manually cl
 
 ## Install
 
-From this repository:
+Install the latest released macOS binary:
 
 ```sh
-go install ./cmd/devdesk
+curl -fsSL https://raw.githubusercontent.com/jonace-mpelule/devdesk/main/install.sh | sh
 ```
 
-Or run it directly while developing:
+Install a specific version or location:
 
 ```sh
-go run ./cmd/devdesk create
+DEVDESK_VERSION=v0.1.0 DEVDESK_INSTALL_DIR=/usr/local/bin sh ./install.sh
 ```
 
 ## Configuration
@@ -111,6 +111,12 @@ List configured presets:
 devdesk list
 ```
 
+Show the installed version:
+
+```sh
+devdesk version
+```
+
 Preview actions without closing or opening anything:
 
 ```sh
@@ -147,3 +153,8 @@ Grant access to the app that is running `devdesk`.
 - YAML is the supported preset format.
 - App names must match the macOS application name.
 - Use `--dry-run` first when creating a new preset, especially with `close_all: true`.
+
+## Project Docs
+
+- [Developer docs](docs/development.md)
+- [Deployment docs](docs/deployment.md)

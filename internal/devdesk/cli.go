@@ -28,6 +28,10 @@ func RunCLI(args []string, stdin io.Reader, stdout io.Writer, stderr io.Writer) 
 	}
 
 	command := flags.Arg(0)
+	if command == "version" {
+		PrintVersion(stdout)
+		return nil
+	}
 	if command == "create" {
 		return createWorkspace(*configPath, flags.Args()[1:], stdin, stdout, stderr)
 	}

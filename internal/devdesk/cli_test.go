@@ -48,6 +48,18 @@ func TestRunCLICreateWorkspaceCreatesConfig(t *testing.T) {
 	}
 }
 
+func TestRunCLIVersionDoesNotRequireConfig(t *testing.T) {
+	var out bytes.Buffer
+	err := RunCLI([]string{"version"}, strings.NewReader(""), &out, &bytes.Buffer{})
+	if err != nil {
+		t.Fatalf("RunCLI() error = %v", err)
+	}
+
+	if !strings.Contains(out.String(), "devdesk ") {
+		t.Fatalf("output = %q, want version output", out.String())
+	}
+}
+
 func TestRunCLICreateWorkspaceRejectsCloseAllWithCloseApps(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "devdesk.yaml")
 

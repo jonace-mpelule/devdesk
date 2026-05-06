@@ -1,2 +1,4 @@
 .gocache/
+.gomodcache/
 .DS_Store
+dist/
