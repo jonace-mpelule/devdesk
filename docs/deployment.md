@@ -86,19 +86,29 @@ git push origin <tag>
 
 ## Publish a GitHub Release
 
-Publish the macOS archives and checksums with:
+Use one command for the full release flow:
 
 ```sh
-make release
+make publish
 ```
 
-Use a different automatic bump:
+This resolves one version, runs tests, builds both macOS binaries, packages archives, creates or reuses the matching tag on `HEAD`, pushes the tag, and creates the GitHub release.
+
+Use a specific version:
 
 ```sh
-make release BUMP=minor
+make publish VERSION=v0.2.2
 ```
 
-`make release` requires:
+Use an automatic bump when `HEAD` does not already have a version tag:
+
+```sh
+make publish BUMP=minor
+```
+
+Do not run `make tag` and then `make release` as separate commands for normal publishing. Creating a tag first changes what the next automatic patch version is.
+
+`make publish` requires:
 
 - Authenticated `gh`
 - A clean working tree

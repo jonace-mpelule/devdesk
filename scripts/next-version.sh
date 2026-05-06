@@ -2,6 +2,13 @@
 set -eu
 
 bump="${1:-patch}"
+current_head_tag="$(git tag --points-at HEAD --list 'v[0-9]*' --sort=-v:refname | head -n 1)"
+
+if [ -n "$current_head_tag" ]; then
+	printf '%s\n' "$current_head_tag"
+	exit 0
+fi
+
 latest="$(git tag --list 'v[0-9]*' --sort=-v:refname | head -n 1)"
 
 if [ -z "$latest" ]; then

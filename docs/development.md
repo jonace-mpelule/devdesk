@@ -72,7 +72,8 @@ If the repository has no `vX.Y.Z` tags yet, the computed version starts at `v0.1
 - `make build-mac`: builds macOS arm64 and amd64 binaries.
 - `make package-mac`: builds macOS binaries, archives them, and writes checksums.
 - `make tag`: runs tests and creates an annotated Git tag for the computed version.
-- `make release`: packages macOS binaries, creates the tag, and publishes a GitHub release.
+- `make release`: alias for `make publish`.
+- `make publish`: runs the full publish flow with one resolved version.
 - `make install-local`: installs the local binary into `~/.local/bin/devdesk`.
 - `make clean`: removes `dist/`.
 

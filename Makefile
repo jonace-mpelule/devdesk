@@ -10,7 +10,7 @@ GOCACHE ?= $(CURDIR)/.gocache
 GOMODCACHE ?= $(CURDIR)/.gomodcache
 LDFLAGS := -s -w -X '$(MODULE)/internal/devdesk.Version=$(VERSION)' -X '$(MODULE)/internal/devdesk.Commit=$(COMMIT)' -X '$(MODULE)/internal/devdesk.Date=$(DATE)'
 
-.PHONY: run test clean version build build-mac build-mac-arm64 build-mac-amd64 package-mac checksum tag release install-local
+.PHONY: run test clean version build build-mac build-mac-arm64 build-mac-amd64 package-mac checksum tag release publish install-local
 
 run:
 	go run $(CMD)
@@ -48,8 +48,10 @@ checksum:
 tag: test
 	./scripts/tag-version.sh $(VERSION)
 
-release: package-mac tag
-	gh release create $(VERSION) $(DIST)/*.tar.gz $(DIST)/checksums.txt --title "$(VERSION)" --notes "DevDesk $(VERSION)"
+release: publish
+
+publish:
+	./scripts/publish-release.sh "$(VERSION)" "$(BUMP)"
 
 install-local: build
 	mkdir -p $(HOME)/.local/bin
